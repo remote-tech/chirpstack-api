@@ -5,6 +5,8 @@ package fuota;
 option go_package = "github.com/brocaar/chirpstack-api/go/v3/fuota";
 option java_package = "io.chirpstack.api.fuota";
 
+option php_metadata_namespace = "Fuota\\Metadata";
+
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
@@ -20,6 +22,9 @@ service FUOTAServerService {
 
     // GetDeploymentDeviceLogs returns the FUOTA logs given a deployment ID and DevEUI.
     rpc GetDeploymentDeviceLogs(GetDeploymentDeviceLogsRequest) returns (GetDeploymentDeviceLogsResponse) {}
+
+    // DeleteDeployment deletes the given FUOTA deployment.
+    rpc DeleteDeployment(GetDeploymentStatusRequest) returns (CreateDeploymentResponse) {}
 }
 
 
@@ -105,24 +110,28 @@ message Deployment {
     // Payload.
     bytes payload = 12;
 
+    // Fragmentation redundancy mode.
+    // The number represents the additional redundant frames to send.
+    uint32 fragmentation_redundancy_mode = 13;
+
     // Fragmentation redundancy.
     // The number represents the additional redundant frames to send.
-    uint32 fragmentation_redundancy = 13;
+    uint32 fragmentation_redundancy = 14;
 
     // Fragmentation session index.
-    uint32 fragmentation_session_index = 14;
+    uint32 fragmentation_session_index = 15;
 
     // Fragmentation matrix.
-    uint32 fragmentation_matrix = 15;
+    uint32 fragmentation_matrix = 16;
 
     // Block ack delay.
-    uint32 fragmentation_block_ack_delay = 16;
+    uint32 fragmentation_block_ack_delay = 17;
 
     // Descriptor (4 bytes).
-    bytes fragmentation_descriptor = 17;
+    bytes fragmentation_descriptor = 18;
 
     // Request fragmentation session status.
-    RequestFragmentationSessionStatus request_fragmentation_session_status = 18;
+    RequestFragmentationSessionStatus request_fragmentation_session_status = 19;
 }
 
 
