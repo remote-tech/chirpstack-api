@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package fuota;
 
-option go_package = "github.com/brocaar/chirpstack-api/go/v3/fuota";
+option go_package = "github.com/remote-tech/chirpstack-api/go/v3/fuota";
 option java_package = "io.chirpstack.api.fuota";
 
 option php_metadata_namespace = "Fuota\\Metadata";
